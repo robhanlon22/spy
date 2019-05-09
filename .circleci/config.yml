@@ -27,7 +27,24 @@ jobs:
     docker:
       - image: circleci/clojure:lein-2.9.0-browsers-legacy
     steps:
+      - checkout
       - run: lein test
+
+  phantom-test:
+    docker:
+      - image: circleci/clojure:lein-2.9.0-browsers-legacy
+    steps:
+      - checkout
+      - run: lein test-phantom
+
+  nashorn-test:
+    docker:
+      - image: circleci/clojure:lein-2.9.0-browsers-legacy
+    steps:
+      - checkout
+      - run: lein test-nashorn
+
+
 
 workflows:
   version: 2
@@ -35,5 +52,11 @@ workflows:
     jobs:
       - build
       - clj-test:
+          requires:
+            - build
+      - phantom-test:
+          requires:
+            - build
+      - nashorn-test:
           requires:
             - build
