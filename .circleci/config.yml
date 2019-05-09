@@ -44,6 +44,13 @@ jobs:
       - checkout
       - run: lein test-nashorn
 
+  node-test:
+    docker:
+      - image: circleci/clojure:lein-2.9.0-browsers-legacy
+    steps:
+      - checkout
+      - run: lein test-node
+
 
 
 workflows:
@@ -58,5 +65,8 @@ workflows:
           requires:
             - build
       - nashorn-test:
+          requires:
+            - build
+      - node-test:
           requires:
             - build
