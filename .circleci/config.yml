@@ -49,7 +49,7 @@ jobs:
       - image: circleci/clojure:lein-2.9.0-browsers-legacy
     steps:
       - checkout
-      - run: lein cloverage
+      - run: lein cloverage --coveralls
 
 workflows:
   version: 2
