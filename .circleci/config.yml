@@ -45,6 +45,7 @@ jobs:
       - run: lein test-nashorn
 
   coverage:
+    context: coveralls
     docker:
       - image: circleci/clojure:lein-2.9.0-browsers-legacy
     steps:
