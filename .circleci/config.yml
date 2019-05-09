@@ -51,7 +51,7 @@ jobs:
     steps:
       - checkout
       - run: lein cloverage --coveralls
-      - run: curl -F "json_file=@target/coverage/coveralls.json" https://coveralls.io/api/v1/jobs
+      - run: COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN curl -F "json_file=@target/coverage/coveralls.json" https://coveralls.io/api/v1/jobs
 
 workflows:
   version: 2
